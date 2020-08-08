@@ -6,6 +6,10 @@ This is a simple C application that will allow you to launch any binary in a spe
 
 This application takes arguments at compile-time. You must set the define variables for `NAMESPACE` and `BINARY`. `NAMESPACE` is a string of the name of your network namespace, as reported by `ip netns`. `BINARY` is a string of the path to the binary you want to run in a separate namespace.
 
+The installation of this will require the binary be owned by root with the sticky bit. This allows the application elevated permissions, to switch to the namespace, then it immediately drops back to user permissions.
+
+An example to compile this and install this is shown below.
+
 ```bash
 gcc -D 'NAMESPACE="my_namespace"' -D 'BINARY="/usr/bin/bash"' -o bash-wrapped main.c
 install -m 4755 -o 0 -g 0 bash-wrapped /usr/local/bin/bash-wrapped
