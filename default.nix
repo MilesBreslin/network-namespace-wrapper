@@ -1,4 +1,4 @@
-{stdenv, namespace, binary}:
+{stdenv, namespace ? "", binary ? "/bin/sh"}:
 
 stdenv.mkDerivation {
     name = "network-namespace-wrapper";
